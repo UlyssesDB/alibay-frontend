@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {getItemDescription} from '../mock'
+import Header from './Header';
+
 class DisplayItem extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,8 @@ class DisplayItem extends Component {
 
   render() {
     return (
-        <div className="Listing">
+        <div className="display-item">
+          <Header />
           <img src={this.state.item.img} />
           <label>Product Description</label>
           <p>{this.state.item.blurb}</p>
@@ -29,7 +32,7 @@ class DisplayItem extends Component {
           <h4>{this.state.item.price}</h4>
           <label>Seller Rating:</label>
           <h4>{this.state.item.rating}</h4>
-          <button >Buy Item</button> {/* to mock.js buy function ? */}
+          <button onClick={()=>buy(buyerID, sellerID, listingID)} >Buy Item</button>
         </div>
     );
   }

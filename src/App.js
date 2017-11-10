@@ -27,13 +27,27 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: {}
+      user: {
+        id: '111',
+        name: 'Ulysses'
+      }
     }
     this.loginUser = this.loginUser.bind(this);
   }
 
   componentWillMount() {
   
+  }
+
+  loginUser() {
+    firebase.auth().signInWithPopup(provider)
+    .then(data => {
+      database.ref('users/').child(data.additionalUserInfo.profile.name).once('value', (data) => {
+          this.setState({
+            user: data.val()
+          })
+        })
+      })
   }
 
   async loginUser() {
@@ -48,9 +62,9 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Route exact={true} path="/" render={(props) => <Home user={this.state.user} />} />
-          <Route path="/createItem" render={() => <CreateItem />} />
+          <Route path="/createItem" render={() => <CreateItem user={this.state.user} />} />
           <Route path="/displayItem/:listingId" render={(props) => <DisplayItem location={props.location.pathname}/>} />
-          <Route path="/userPage" render={() => <UserPage />} />
+          <Route path="/userpage" render={() => <UserPage user={this.state.user }/>} />
           <Route path="/login" render={() => <Login loginUser={this.loginUser} />} />
         </div>
       </BrowserRouter>

@@ -14,8 +14,8 @@ class Login extends Component {
   render() {
     return (
         <div className="login">
+          <Header />
          <button onClick={() => this.props.loginUser()}>Login</button>
-         <Header />
         </div>
     );
   }
@@ -24,3 +24,4 @@ class Login extends Component {
 export default Login;
 
 
+// bind state from app, login func is bound in app so that it can be passed down as a prop

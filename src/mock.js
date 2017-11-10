@@ -6,7 +6,15 @@ export function genUID() {
     return Math.floor(Math.random() * 100000000)
 }
 
-let users = {};
+let users = {
+    '111':{
+        id: '111',
+        name: 'Ulysses'
+    }
+};
+
+// CHANGE UID TO listingId <<<<<<<<<<<<<<<<<<<<<<<<,
+
 let items = {
     item1: {name: 'boat', price: '100', blurb: 'testtesttest', rating: '5', uid: 'item1', sellerId: 'nick', img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Lifeboat.17-31.underway.arp.jpg/1024px-Lifeboat.17-31.underway.arp.jpg'},
     item2: {name: 'freighter', price: '200', blurb: 'testtesttest', rating: '3', uid: 'item2', sellerId: 'nick', img: 'http://images.archant.co.uk/polopoly_fs/1.4091556.1432825276!/image/image.jpg_gen/derivatives/landscape_630/image.jpg'},
@@ -36,12 +44,14 @@ createListing adds a new listing to our global state.
       [blurb] A blurb describing the item
     returns: the ID of the new listing
 */
-export function createListing(sellerID, price, blurb) {
+export function createListing(sellerID, name, img, price, blurb) {
     let listingID = "item" + genUID();
-    items[listingID] = {sellerID: sellerID, price: price, blurb: blurb, uid: listingID};
+                        // IMPLEMENT IMAGE UPLOAD LOGIC
+    console.log(img)
+    items[listingID] = {sellerID,name, img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Lifeboat.17-31.underway.arp.jpg/1024px-Lifeboat.17-31.underway.arp.jpg', price, blurb, uid: listingID};
     itemsForSale.push(listingID);
     return listingID;
-}
+  }
 
 /* 
 getItemDescription returns the description of a listing
