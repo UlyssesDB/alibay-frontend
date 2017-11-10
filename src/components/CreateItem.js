@@ -23,7 +23,9 @@ class CreateItem extends Component {
     return (
         <div className="Listing">
           <Header />
-          <br />
+          {
+          this.props.loggedIn ? 
+          (<br />
           <label>Item name:</label>
           <input type='text' onChange={(e)=>this.setState({name: e.target.value})} />
           <br />
@@ -40,7 +42,11 @@ class CreateItem extends Component {
           <label>Item description:</label>
           <input type='text' onChange={(e)=>this.setState({blurb: e.target.value})} />
           
-          <button onClick={()=>createListing(this.props.user.id, this.state.name, this.state.img, this.state.price, this.state.blurb)}>Submit Item</button>
+        <button onClick={()=>createListing(this.props.user.id, this.state.name, this.state.img, this.state.price, this.state.blurb)}>Submit Item</button> )
+          : (<h1>Login Required</h1>)
+          }
+          }
+          
         </div>
     );
   }

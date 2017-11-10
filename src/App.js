@@ -30,7 +30,8 @@ class App extends Component {
       user: {
         id: '111',
         name: 'Ulysses'
-      }
+      },
+      loggedIn: false
     }
     this.loginUser = this.loginUser.bind(this);
   }
@@ -44,7 +45,8 @@ class App extends Component {
     .then(data => {
       database.ref('users/').child(data.additionalUserInfo.profile.name).once('value', (data) => {
           this.setState({
-            user: data.val()
+            user: data.val(),
+            loggedIn: true
           })
         })
       })
@@ -61,11 +63,12 @@ class App extends Component {
     return (  
       <BrowserRouter>
         <div className="App">
+          <Header loggedIn={this.state.loggedIn}/>
           <Route exact={true} path="/" render={(props) => <Home user={this.state.user} />} />
-          <Route path="/createItem" render={() => <CreateItem user={this.state.user} />} />
-          <Route path="/displayItem/:listingId" render={(props) => <DisplayItem location={props.location.pathname}/>} />
-          <Route path="/userpage" render={() => <UserPage user={this.state.user }/>} />
-          <Route path="/login" render={() => <Login loginUser={this.loginUser} />} />
+          <Route path="/createItem" render={() => <CreateItem user={this.state.user} loggedIn={this.state.loggedIn} />} />
+          <Route path="/displayItem/:listingId" render={(props) => <DisplayItem location={props.location.pathname}/>} user={this.state.user} loggedIn={this.state.loggedIn} />
+          <Route path="/userpage" render={() => <UserPage user={this.state.user} loggedIn={this.state.loggedIn} />} />
+          <Route path="/login" render={() => <Login loginUser={this.loginUser} loggedIn={this.state.loggedIn} />} />
         </div>
       </BrowserRouter>
     );

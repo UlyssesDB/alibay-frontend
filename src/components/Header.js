@@ -15,22 +15,23 @@ class Header extends Component {
     return (
         <div className="header">
           <div className="base-navigation-buttons">
-          <Link to={"/"}>
+            <Link to={"/"}>
               <button>Home</button>
             </Link>
             <Link to={"/Login"}>
               <button>Login</button>
             </Link>
 
-            {
-            <div>
+            { this.props.loggedIn ?
+            (<div>
             <Link to={"/CreateItem"}>
               <button>Post Item</button>
             </Link>
-            <Link to={"UserPage"}>
+            <Link to={"/UserPage"}>
               <button>My Profile</button>
             </Link>
-            </div>
+            </div>)
+            : <h3>Login for more options...</h3>
             }
           </div>
         </div>

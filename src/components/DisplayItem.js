@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {getItemDescription} from '../mock'
 import Header from './Header';
+import { buy } from '../mock'
 
 class DisplayItem extends Component {
   constructor(props) {
@@ -25,14 +26,14 @@ class DisplayItem extends Component {
     return (
         <div className="display-item">
           <Header />
-          <img src={this.state.item.img} />
+          <img style={{width: 400}} src={this.state.item.img} />
           <label>Product Description</label>
           <p>{this.state.item.blurb}</p>
           <label>Price:</label>
           <h4>{this.state.item.price}</h4>
           <label>Seller Rating:</label>
           <h4>{this.state.item.rating}</h4>
-          <button onClick={()=>buy(buyerID, sellerID, listingID)} >Buy Item</button>
+          {this.props.loggedIn ? <button onClick={()=>buy(buyerID, sellerID, listingID)} >Buy Item</button> : <h3>Login to Buy</h3>}
         </div>
     );
   }

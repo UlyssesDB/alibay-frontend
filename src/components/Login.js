@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { searchForListings } from '../mock.js'
 import Header from './Header';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor() {
@@ -15,7 +16,9 @@ class Login extends Component {
     return (
         <div className="login">
           <Header />
-         <button onClick={() => this.props.loginUser()}>Login</button>
+          <Link to={"/"}>
+            <button onClick={() => this.props.loginUser()}>Login</button>
+          </Link>
         </div>
     );
   }

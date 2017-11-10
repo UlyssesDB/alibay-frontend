@@ -14,7 +14,7 @@ class Listing extends Component {
     return (
         <div className="Listing">
           <br />
-          <img style={{width: 200}}src={this.props.img} />
+          <img style={{width: 200}} src={this.props.img} />
           <br />
           <p><b>Product Description:</b> {this.props.description}</p>
           <h4>Price: {this.props.price}</h4>

@@ -28,18 +28,25 @@ class UserPage extends Component {
     return (
         <div className="Listing">
           <Header />
+          {this.props.loggedIn ?
+          (<div>
           <div className="profile">
-            <img src={this.props.state.user.additionalUserInfo.picture} />
-            <h3>{this.props.state.user.additionalUserInfo.name}</h3>
-            <p>email: {this.props.state.user.additionalUserInfo.email}</p>
-            <p>country: {this.props.state.user.additionalUserInfo.locale}</p>
-            <p>description: {this.props.state.user.additionalUserInfo.id}</p>
-          </div>
-          <div className="history">
-            <button onClick={()=>itemsForSale(this.props.user.id)}>Items Selling</button>
-            <button onClick={()=>allItemsSold(this.props.user.id)}>Items Sold</button>
-            <button onClick={()=>allItemsBought(this.props.user.id)}>Items Bought</button>
-          </div>
+          <img src={this.props.state.user.additionalUserInfo.picture} />
+          <h3>{this.props.state.user.additionalUserInfo.name}</h3>
+          <p>email: {this.props.state.user.additionalUserInfo.email}</p>
+          <p>country: {this.props.state.user.additionalUserInfo.locale}</p>
+          <p>description: {this.props.state.user.additionalUserInfo.id}</p>
+        </div>
+        <div className="history">
+          <button onClick={()=>itemsForSale(this.props.user.id)}>Items Selling</button>
+          <button onClick={()=>allItemsSold(this.props.user.id)}>Items Sold</button>
+          <button onClick={()=>allItemsBought(this.props.user.id)}>Items Bought</button>
+        </div>
+        </div>)
+          :
+          (<h1>Login Required</h1>)
+          }
+          
           
           
         </div>
