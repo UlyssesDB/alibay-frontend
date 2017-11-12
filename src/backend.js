@@ -1,12 +1,12 @@
 import firebase from 'firebase';
 
 var config = {
-    apiKey: "AIzaSyBWQ_wngBXONCUaVIGLQ7QDN7qL1TZVEXw",
-    authDomain: "alibay-backend.firebaseapp.com",
-    databaseURL: "https://alibay-backend.firebaseio.com",
-    projectId: "alibay-backend",
-    storageBucket: "alibay-backend.appspot.com",
-    messagingSenderId: "517588095856"
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: ""
 };
 firebase.initializeApp(config);
 
