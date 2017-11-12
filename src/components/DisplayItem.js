@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {getItemDescription} from '../mock'
+import { getItemDescription, buy } from '../backend';
 import Header from './Header';
-import { buy } from '../mock'
+import { Link } from 'react-router-dom';
 
 class DisplayItem extends Component {
   constructor(props) {
@@ -11,36 +11,31 @@ class DisplayItem extends Component {
     }
   }
 
-  onClick() {
-    //mock.js buy button ?
-  }
-
-  componentWillMount() {
+  async componentDidMount() {
     const itemId = this.props.location.slice(13)
+    console.log(await getItemDescription(itemId))
     this.setState({
-      item: getItemDescription(itemId)
+      item: await getItemDescription(itemId)
     })
+    console.log(this.state)
   }
 
   render() {
     return (
         <div className="display-item">
-          <Header />
-          <img style={{width: 400}} src={this.state.item.img} />
+          <Header loggedIn={this.props.loggedIn} />
+          <img style={{width: 400}} src={this.state.item.image} />
+          <br />
+          <h3>{this.state.item.name}</h3>
           <label>Product Description</label>
           <p>{this.state.item.blurb}</p>
           <label>Price:</label>
           <h4>{this.state.item.price}</h4>
-          <label>Seller Rating:</label>
-          <h4>{this.state.item.rating}</h4>
-          {this.props.loggedIn ? <button onClick={()=>buy(buyerID, sellerID, listingID)} >Buy Item</button> : <h3>Login to Buy</h3>}
+          {console.log(this.props)}
+          {this.props.loggedIn ? <Link to="/" ><button onClick={()=>buy(this.props.user.id, this.state.item.sellerID, this.state.item.listingID)} >Buy Item</button></Link> : <Link to="/login"><h3>Login to Buy</h3></Link>}
         </div>
     );
   }
 }
 
 export default DisplayItem;
-
-
-//us itemid from this.params.userid?
-//get item object from firebase with that itemid, and put in in state
